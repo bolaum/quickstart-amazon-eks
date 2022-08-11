@@ -1341,10 +1341,7 @@ Resources:
         - !If [DetectSharedStacks, !Ref AutoDetectSharedResources, !Ref 'AWS::NoValue']
       cfn-lint: { config: { ignore_checks: [ W9901, E9902 ] } }
     Properties:
-      TemplateURL: !Sub
-        - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/amazon-eks.template.yaml'
-        - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
-          S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      TemplateURL: https://github.com/bolaum/quickstart-amazon-eks/raw/feat/rancher-fix-test/templates/amazon-eks.template.yaml
       Parameters:
         PublicSubnet1ID: !GetAtt VPCStack.Outputs.PublicSubnet1ID
         PublicSubnet2ID: !If

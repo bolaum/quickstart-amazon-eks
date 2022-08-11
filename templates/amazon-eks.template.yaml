@@ -922,10 +922,7 @@ Resources:
         - !Ref NodeGroupStack
         - !If [EnableFargate, !Ref FargateNamespaces, !Ref 'AWS::NoValue']
     Properties:
-      TemplateURL: !Sub
-        - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-eks-rancher/templates/rancher.template.yaml'
-        - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
-          S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      TemplateURL: https://raw.githubusercontent.com/bolaum/quickstart-eks-rancher/feat/rancher-fix-test/templates/rancher.template.yaml
       Parameters:
         PrivateSubnet1ID: !Ref PrivateSubnet1ID
         EKSClusterName: !GetAtt EKSControlPlane.Outputs.EKSName
